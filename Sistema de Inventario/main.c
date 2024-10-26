@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 
 struct  Produto
 {
@@ -36,16 +37,20 @@ int main(void)
         switch(escolha)
         {
             case 1:
+                system("cls");
                 adicionar(produtos, &numProdutos);
             break;
             case 2:
+                system("cls");
                 ordenar(produtos, &numProdutos);
                 listar(produtos, &numProdutos);
             break;
             case 3:
+                system("cls");
                 remover(produtos, &numProdutos);
             break;
             case 4:
+            system("cls");
                 if(numProdutos == 0) 
                 {
                     printf("Inventario vazio, por favor, adicione algum item!\n");
@@ -56,8 +61,8 @@ int main(void)
                     int index = procurar(produtos, 0, numProdutos, alvo);
                     if(index != -1)
                     {
-                        printf("| %-5d | %-20s | %-20s | %-5d | %-5f\n", "Codigo", "Nome", "Categoria", "Quantidade", "Preco");
-                        printf("--------------------------------------------\n");
+                        printf("| %-5s | %-20s | %-20s | %-5s | %-5s\n", "Codigo", "Nome", "Categoria", "Quantidade", "Preco");
+                        printf("------------------------------------------------------------------------\n");
                         printf("| %-5d | %-20s | %-20s | %-5d | %-5f\n", produtos[index].codigo, produtos[index].nome, produtos[index].categoria, produtos[index].quantidade, produtos[index].preco);
                         
                     }
@@ -144,12 +149,12 @@ void listar(struct Produto produtos[], int *numProdutos)
         printf("Inventario vazio, por favor, adicione algum item!\n");
         return;
     }
-    printf("| %-5d | %-20s | %-20s | %-5d | %-5f\n", "Codigo", "Nome", "Categoria", "Quantidade", "Preco");
-    printf("--------------------------------------------\n");
+    printf("| %-5s | %-20s | %-20s | %-5s | %-5s\n", "Codigo", "Nome", "Categoria", "Quantidade", "Preco");
+    printf("-----------------------------------------------------------------------------\n");
     for (int i = 0; i < *numProdutos; i++)
     {
-        printf("| %-5d | %-20s | %-20s | %-5d | %-5f\n", produtos[i].codigo, produtos[i].nome, produtos[i].categoria, produtos[i].quantidade, produtos[i].preco);
-        printf("--------------------------------------------\n");
+        printf("| %-5d  | %-20s | %-20s | %-5d | %-.2f\n", produtos[i].codigo, produtos[i].nome, produtos[i].categoria, produtos[i].quantidade, produtos[i].preco);
+        printf("-----------------------------------------------------------------------------\n");
     }
 }
 
