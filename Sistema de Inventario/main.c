@@ -20,6 +20,61 @@ int main(void)
 {
     struct Produto produtos[100];
     int numProdutos = 0;
+    int escolha;
+    char alvo[25];
+    do
+    {
+        printf("\n");
+        printf("---Sistema de Inventario---\n");
+        printf("1. Adicionar Item.\n");
+        printf("2. Listar Inventario\n");
+        printf("3. Remover do Inventario\n");
+        printf("4. Buscar Item\n");
+        printf("5. Sair\n");
+        scanf("%d", &escolha);
+
+        switch(escolha)
+        {
+            case 1:
+                adicionar(produtos, &numProdutos);
+            break;
+            case 2:
+                ordenar(produtos, &numProdutos);
+                listar(produtos, &numProdutos);
+            break;
+            case 3:
+                remover(produtos, &numProdutos);
+            break;
+            case 4:
+                if(numProdutos == 0) 
+                {
+                    printf("Inventario vazio, por favor, adicione algum item!\n");
+                }
+                else {
+                    printf("Qual item deseja procurar? ");
+                    scanf(" %[^\n]s", alvo);
+                    int index = procurar(produtos, 0, numProdutos, alvo);
+                    if(index != -1)
+                    {
+                        printf("| %-5d | %-20s | %-20s | %-5d | %-5f\n", "Codigo", "Nome", "Categoria", "Quantidade", "Preco");
+                        printf("--------------------------------------------\n");
+                        printf("| %-5d | %-20s | %-20s | %-5d | %-5f\n", produtos[index].codigo, produtos[index].nome, produtos[index].categoria, produtos[index].quantidade, produtos[index].preco);
+                        
+                    }
+                }
+                
+            break;
+            case 5:
+                printf("Encerrando o programa...");
+                return 0;
+            break;
+
+            default:
+                printf("Opcao Invalida!\n");
+            break;
+        }
+
+    } while (5 != escolha);
 }
 
 void adicionar(struct Produto produtos[], int *numProdutos)
@@ -42,6 +97,11 @@ void adicionar(struct Produto produtos[], int *numProdutos)
 
 void remover(struct Produto produtos[], int *numProdutos)
 {   
+    if(*numProdutos == 0) 
+    {
+        printf("Inventario vazio, por favor, adicione algum item!\n");
+        return;
+    }
     struct Produto temp;
     char nome[25];
     printf("Entre qual item deseja remover: ");
@@ -64,7 +124,18 @@ void remover(struct Produto produtos[], int *numProdutos)
 
 void ordenar(struct Produto produtos[], int *numProdutos)
 {
-
+    struct Produto temp;
+    for (int i = 0; i < *numProdutos - 1; i++)
+    {
+        for (int j = 0; j < *numProdutos - 1 - i; j++)
+        {
+            if(strcmp(produtos[j].nome, produtos[j + 1].nome) > 0) {
+                temp = produtos[j];
+                produtos[j] = produtos[j + 1];
+                produtos[j + 1] = temp;
+            }
+        }
+    }
 }
 void listar(struct Produto produtos[], int *numProdutos)
 {
@@ -96,17 +167,4 @@ int procurar(struct Produto produtos[], int l, int r, char alvo[])
         return procurar(produtos, l, meio - 1, alvo);
     else
         return procurar(produtos, meio + 1, r, alvo);
-}
-
-void menu(void) 
-{
-    do
-    {
-        printf("1. Adicionar item.\n");
-        printf("2. Listar inventario\n");
-        printf("3. Remover do inventario\n");
-        printf("")
-        printf
-    } while (/* condition */);
-    
 }
