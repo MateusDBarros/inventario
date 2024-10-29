@@ -24,4 +24,8 @@ Os produtos são armazenados em uma estrutura `struct` com os seguintes campos:
 - Compilador C (como GCC ou Clang)
 - Ambiente de Desenvolvimento Integrado (IDE) recomendado: Code::Blocks, Visual Studio Code, etc.
 
-Para mais informações, entre em contato via [mb685212@gmail.com](mailto:mb685212@gmail.com) ou [linkedin](https://linkedin.com/in/mateus-barros13)
+Para mais informações, entre em contato via
+## Contato
+
+- [LinkedIn](https://www.linkedin.com/in/mateus-barros13)
+- [Email](mb685212@gmail.com)
